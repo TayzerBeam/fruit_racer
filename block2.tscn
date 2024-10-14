@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmxpobwgc3nyd"]
+
+[ext_resource type="Script" path="res://block2.gd" id="1_nunvy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vp4b4"]
+albedo_color = Color(0.0156863, 0.682353, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e6o56"]
+material = SubResource("StandardMaterial3D_vp4b4")
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dq2cm"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qif3p"]
+albedo_color = Color(1, 0.00784314, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a7ioj"]
+material = SubResource("StandardMaterial3D_qif3p")
+size = Vector3(1, 10, 1)
+
+[sub_resource type="Animation" id="Animation_tv4rk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pbti8"]
+resource_name = "move_block"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(-1.55, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wa5ws"]
+_data = {
+"RESET": SubResource("Animation_tv4rk"),
+"move_block": SubResource("Animation_pbti8")
+}
+
+[node name="Node3D" type="Path3D"]
+script = ExtResource("1_nunvy")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, 0)
+progress = 3.0
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="PathFollow3D"]
+remote_path = NodePath("../../AnimatableBody3D")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
+mesh = SubResource("BoxMesh_e6o56")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("BoxShape3D_dq2cm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="AnimatableBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 5, 0)
+mesh = SubResource("BoxMesh_a7ioj")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wa5ws")
+}

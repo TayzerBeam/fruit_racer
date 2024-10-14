@@ -1,0 +1,268 @@
+[gd_scene load_steps=23 format=3 uid="uid://clr038w380o1y"]
+
+[ext_resource type="Script" path="res://banana_car.gd" id="1_bhbl2"]
+[ext_resource type="PackedScene" uid="uid://c1bs14cr5ur0b" path="res://assets/Banana.glb" id="2_uiwgy"]
+[ext_resource type="Script" path="res://chase_camera.gd" id="3_p827u"]
+[ext_resource type="PackedScene" uid="uid://digtawaeq5eyu" path="res://assets/banana_fractured_pieces.glb" id="4_ginjm"]
+[ext_resource type="Texture2D" uid="uid://b8axewql3ote6" path="res://assets/speed_texture.png" id="5_2e74b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1m1vg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afx1v"]
+albedo_color = Color(0.0117647, 0.0117647, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4vvjw"]
+material = SubResource("StandardMaterial3D_afx1v")
+top_radius = 2.0
+bottom_radius = 2.0
+radial_segments = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x83p"]
+albedo_color = Color(0.968627, 0.968627, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y6wan"]
+material = SubResource("StandardMaterial3D_2x83p")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14u1y"]
+albedo_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+metallic = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_8j5py"]
+material = SubResource("StandardMaterial3D_14u1y")
+size = Vector3(4.2, 1, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2d5a"]
+albedo_color = Color(0.67451, 0.67451, 0.67451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eoiwp"]
+albedo_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mgoky"]
+material = SubResource("StandardMaterial3D_eoiwp")
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqn5w"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_arwvi"]
+material = SubResource("StandardMaterial3D_vqn5w")
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.2
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qd8xc"]
+points = PackedVector3Array(2, 0.5, 7.5, 2, -0.5, 7.5, 2, 0.5, -7.5, -2, 0.5, 7.5, -2, -0.5, 7.5, 2, -0.5, -7.5, -2, 0.5, -7.5, -2, -0.5, -7.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0830w"]
+size = Vector3(1, 1, 10)
+
+[sub_resource type="Animation" id="Animation_bdjx5"]
+resource_name = "speed"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0431373), Color(1, 1, 1, 0.219608), Color(1, 1, 1, 0.556863), Color(1, 1, 1, 0.929412)]
+}
+
+[sub_resource type="Animation" id="Animation_vuttc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0431373)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5qeib"]
+_data = {
+"RESET": SubResource("Animation_vuttc"),
+"speed": SubResource("Animation_bdjx5")
+}
+
+[node name="banana_car" type="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mass = 200.0
+physics_material_override = SubResource("PhysicsMaterial_1m1vg")
+gravity_scale = 3.0
+center_of_mass_mode = 1
+script = ExtResource("1_bhbl2")
+
+[node name="VehicleWheel3D" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 6)
+use_as_steering = true
+wheel_roll_influence = 0.05
+wheel_radius = 2.0
+wheel_friction_slip = 50.0
+suspension_travel = 1.0
+suspension_stiffness = 60.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="VehicleWheel3D"]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_4vvjw")
+skeleton = NodePath("../../VehicleWheel3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81388, -0.00460529, 0)
+mesh = SubResource("CylinderMesh_y6wan")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleWheel3D/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82018, -0.00460148, 0)
+mesh = SubResource("CylinderMesh_y6wan")
+
+[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 6)
+use_as_steering = true
+wheel_roll_influence = 0.05
+wheel_radius = 2.0
+wheel_friction_slip = 50.0
+suspension_travel = 1.0
+suspension_stiffness = 60.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="VehicleWheel3D2"]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_4vvjw")
+skeleton = NodePath("../../VehicleWheel3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D2/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81388, -0.00460529, 0)
+mesh = SubResource("CylinderMesh_y6wan")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleWheel3D2/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82018, -0.00460148, 0)
+mesh = SubResource("CylinderMesh_y6wan")
+
+[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -6)
+use_as_traction = true
+wheel_roll_influence = 0.05
+wheel_radius = 2.0
+wheel_friction_slip = 50.0
+suspension_travel = 1.0
+suspension_stiffness = 60.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="VehicleWheel3D3"]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_4vvjw")
+skeleton = NodePath("../../VehicleWheel3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D3/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81388, -0.00460529, 0)
+mesh = SubResource("CylinderMesh_y6wan")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleWheel3D3/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82018, -0.00460148, 0)
+mesh = SubResource("CylinderMesh_y6wan")
+
+[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -6)
+use_as_traction = true
+wheel_roll_influence = 0.05
+wheel_radius = 2.0
+wheel_friction_slip = 50.0
+suspension_travel = 1.0
+suspension_stiffness = 60.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="VehicleWheel3D4"]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_4vvjw")
+skeleton = NodePath("../../VehicleWheel3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D4/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81388, -0.00460529, 0)
+mesh = SubResource("CylinderMesh_y6wan")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleWheel3D4/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82018, -0.00460148, 0)
+mesh = SubResource("CylinderMesh_y6wan")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_8j5py")
+surface_material_override/0 = SubResource("StandardMaterial3D_l2d5a")
+
+[node name="back_left_fixture" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.45, 0, -7.5)
+mesh = SubResource("CylinderMesh_mgoky")
+
+[node name="back_left_light" type="MeshInstance3D" parent="MeshInstance3D/back_left_fixture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0232396, 0)
+mesh = SubResource("CylinderMesh_arwvi")
+
+[node name="back_right_fixture" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.45, 0, -7.5)
+mesh = SubResource("CylinderMesh_mgoky")
+
+[node name="back_right_light" type="MeshInstance3D" parent="MeshInstance3D/back_right_fixture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0232396, 0)
+mesh = SubResource("CylinderMesh_arwvi")
+
+[node name="base_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("ConvexPolygonShape3D_qd8xc")
+
+[node name="Banana" parent="." instance=ExtResource("2_uiwgy")]
+
+[node name="pasted__pCube11 group" parent="Banana" index="0"]
+transform = Transform3D(0.201, 0, 0, 0, -8.78599e-09, 0.201, 0, -0.201, -8.78599e-09, 0, 3, 1)
+
+[node name="banana_fractured_pieces" parent="." instance=ExtResource("4_ginjm")]
+transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 3, 1)
+
+[node name="kill_box" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0855013, 3.99716, -0.515582)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kill_box"]
+shape = SubResource("BoxShape3D_0830w")
+
+[node name="chase_camera" type="Camera3D" parent="."]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 2.5, -4)
+script = ExtResource("3_p827u")
+lerp_speed = 0.3
+
+[node name="TextureRect" type="TextureRect" parent="chase_camera"]
+modulate = Color(1, 1, 1, 0.0431373)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+texture = ExtResource("5_2e74b")
+expand_mode = 3
+
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="chase_camera"]
+libraries = {
+"": SubResource("AnimationLibrary_5qeib")
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 2.26267e-08, -8.44439e-08, 0, 0.965926, 0.258819, 8.74228e-08, 0.258819, -0.965926, 0, 12, -22)
+
+[node name="chase_target" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -20)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -31, 5.77781, 0)
+
+[connection signal="body_entered" from="kill_box" to="." method="_on_area_3d_body_entered"]
+
+[editable path="Banana"]
+[editable path="banana_fractured_pieces"]

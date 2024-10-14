@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhe4qrprgfu02"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ws07o"]
+albedo_color = Color(1, 0.00784314, 0.113725, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_xaehr"]
+material = SubResource("StandardMaterial3D_ws07o")
+size = Vector3(10, 5, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8me0v"]
+data = PackedVector3Array(0, 2.5, 5, 5, -2.5, 5, -5, -2.5, 5, 0, 2.5, -5, -5, -2.5, -5, 5, -2.5, -5, 0, 2.5, 5, 0, 2.5, -5, 5, -2.5, 5, 0, 2.5, -5, 5, -2.5, -5, 5, -2.5, 5, 0, 2.5, -5, 0, 2.5, 5, -5, -2.5, -5, 0, 2.5, 5, -5, -2.5, 5, -5, -2.5, -5, -5, -2.5, 5, 5, -2.5, 5, -5, -2.5, -5, 5, -2.5, 5, 5, -2.5, -5, -5, -2.5, -5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PrismMesh_xaehr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="StaticBody3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_8me0v")

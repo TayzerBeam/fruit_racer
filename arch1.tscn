@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://p3md0winwqdc"]
+
+[ext_resource type="PackedScene" uid="uid://cc7rxa4aooda2" path="res://assets/Arch.fbx" id="1_44mji"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfui8"]
+albedo_color = Color(0.4, 1, 0.368627, 1)
+
+[node name="Node3D" type="MeshInstance3D"]
+
+[node name="Root Scene" parent="." instance=ExtResource("1_44mji")]
+
+[node name="Environment_Arch" parent="Root Scene/RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gfui8")
+
+[editable path="Root Scene"]

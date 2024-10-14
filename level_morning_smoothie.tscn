@@ -1,0 +1,353 @@
+[gd_scene load_steps=29 format=3 uid="uid://bgl6o0of8grnf"]
+
+[ext_resource type="Texture2D" uid="uid://du6wdgkvy71cr" path="res://assets/static/cartoon_milkshake_freepik.jpg" id="1_camjw"]
+[ext_resource type="PackedScene" uid="uid://eq1dpdcb1vs6" path="res://start_spot.tscn" id="2_hqqyt"]
+[ext_resource type="PackedScene" uid="uid://sgxvvqlirsv2" path="res://assets/Blender.glb" id="4_b6ueq"]
+[ext_resource type="Script" path="res://assets/Blender.gd" id="5_u5rxt"]
+[ext_resource type="PackedScene" uid="uid://grvbx6hmtujv" path="res://big_ramp.tscn" id="6_2je8m"]
+[ext_resource type="PackedScene" uid="uid://cswy2hu56ft7g" path="res://pounder.tscn" id="7_nn3ul"]
+[ext_resource type="PackedScene" uid="uid://p3md0winwqdc" path="res://arch1.tscn" id="8_87fpy"]
+[ext_resource type="PackedScene" uid="uid://cevildoyma83m" path="res://cube_wall.tscn" id="9_35y34"]
+[ext_resource type="PackedScene" uid="uid://y2jmlucj5ia3" path="res://assets/Broccoli.glb" id="10_knmv4"]
+[ext_resource type="PackedScene" uid="uid://clr038w380o1y" path="res://banana_car_3.tscn" id="11_7qq41"]
+[ext_resource type="PackedScene" uid="uid://c5akn2wybh57l" path="res://assets/Juicer.glb" id="11_b4jys"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m5483"]
+sky_top_color = Color(0.47451, 0.627451, 0.968627, 1)
+sky_horizon_color = Color(0.317647, 0.478431, 0.92549, 1)
+sky_curve = 0.356762
+sky_energy_multiplier = 3.0
+
+[sub_resource type="Sky" id="Sky_qu7se"]
+sky_material = SubResource("ProceduralSkyMaterial_m5483")
+
+[sub_resource type="Environment" id="Environment_spimk"]
+background_mode = 2
+sky = SubResource("Sky_qu7se")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxsvr"]
+albedo_color = Color(1, 0.545098, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxnm7"]
+albedo_color = Color(0.117647, 0.686275, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xsex8"]
+material = SubResource("StandardMaterial3D_fxnm7")
+size = Vector3(500, 10, 300)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cx3kf"]
+data = PackedVector3Array(-250, 5, 150, 250, 5, 150, -250, -5, 150, 250, 5, 150, 250, -5, 150, -250, -5, 150, 250, 5, -150, -250, 5, -150, 250, -5, -150, -250, 5, -150, -250, -5, -150, 250, -5, -150, 250, 5, 150, 250, 5, -150, 250, -5, 150, 250, 5, -150, 250, -5, -150, 250, -5, 150, -250, 5, -150, -250, 5, 150, -250, -5, -150, -250, 5, 150, -250, -5, 150, -250, -5, -150, 250, 5, 150, -250, 5, 150, 250, 5, -150, -250, 5, 150, -250, 5, -150, 250, 5, -150, -250, -5, 150, 250, -5, 150, -250, -5, -150, 250, -5, 150, 250, -5, -150, -250, -5, -150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqhwt"]
+albedo_color = Color(1, 0.545098, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wfdq0"]
+material = SubResource("StandardMaterial3D_cqhwt")
+size = Vector3(10, 50, 300)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_733vl"]
+albedo_texture = ExtResource("1_camjw")
+uv1_scale = Vector3(3, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_1mar5"]
+material = SubResource("StandardMaterial3D_733vl")
+size = Vector2(300, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x3lde"]
+data = PackedVector3Array(-5, 25, 150, 5, 25, 150, -5, -25, 150, 5, 25, 150, 5, -25, 150, -5, -25, 150, 5, 25, -150, -5, 25, -150, 5, -25, -150, -5, 25, -150, -5, -25, -150, 5, -25, -150, 5, 25, 150, 5, 25, -150, 5, -25, 150, 5, 25, -150, 5, -25, -150, 5, -25, 150, -5, 25, -150, -5, 25, 150, -5, -25, -150, -5, 25, 150, -5, -25, 150, -5, -25, -150, 5, 25, 150, -5, 25, 150, 5, 25, -150, -5, 25, 150, -5, 25, -150, 5, 25, -150, -5, -25, 150, 5, -25, 150, -5, -25, -150, 5, -25, 150, 5, -25, -150, -5, -25, -150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o24n3"]
+albedo_color = Color(0.752941, 1, 0.545098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2nij5"]
+material = SubResource("StandardMaterial3D_o24n3")
+size = Vector3(500, 10, 600)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jaay3"]
+data = PackedVector3Array(-250, 5, 300, 250, 5, 300, -250, -5, 300, 250, 5, 300, 250, -5, 300, -250, -5, 300, 250, 5, -300, -250, 5, -300, 250, -5, -300, -250, 5, -300, -250, -5, -300, 250, -5, -300, 250, 5, 300, 250, 5, -300, 250, -5, 300, 250, 5, -300, 250, -5, -300, 250, -5, 300, -250, 5, -300, -250, 5, 300, -250, -5, -300, -250, 5, 300, -250, -5, 300, -250, -5, -300, 250, 5, 300, -250, 5, 300, 250, 5, -300, -250, 5, 300, -250, 5, -300, 250, 5, -300, -250, -5, 300, 250, -5, 300, -250, -5, -300, 250, -5, 300, 250, -5, -300, -250, -5, -300)
+
+[sub_resource type="Curve3D" id="Curve3D_u6cav"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -150, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_tccvg"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="level_morning_smoothie" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_spimk")
+
+[node name="banana_car" parent="WorldEnvironment" instance=ExtResource("11_7qq41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 9, -404)
+
+[node name="start spot" parent="." instance=ExtResource("2_hqqyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -400)
+
+[node name="left_light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1.19249e-08, -0.766044, 0.642788, 0, 0.642788, 0.766044, -1, -9.13499e-09, 7.66517e-09, 0, 250, 0)
+light_energy = 0.5
+
+[node name="right_light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1.19249e-08, 0.766044, -0.642788, 0, 0.642788, 0.766044, 1, -9.13499e-09, 7.66517e-09, 0, 250, 0)
+light_energy = 0.5
+sky_mode = 1
+
+[node name="Blender" parent="." instance=ExtResource("4_b6ueq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.6, 200, 50, 200)
+script = ExtResource("5_u5rxt")
+
+[node name="Star001" parent="Blender" index="0"]
+surface_material_override/6 = SubResource("StandardMaterial3D_mxsvr")
+
+[node name="Blender3" parent="." instance=ExtResource("4_b6ueq")]
+transform = Transform3D(-0.5, 0, -5.24537e-08, 0, 0.4, 0, 4.37114e-08, 0, -0.6, -202, 50, 200)
+script = ExtResource("5_u5rxt")
+
+[node name="Star001" parent="Blender3" index="0"]
+surface_material_override/6 = SubResource("StandardMaterial3D_mxsvr")
+
+[node name="pink_smoothie" type="Node3D" parent="."]
+
+[node name="ground" type="MeshInstance3D" parent="pink_smoothie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78256, 4.57764e-05, -0.101135)
+mesh = SubResource("BoxMesh_xsex8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pink_smoothie/ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pink_smoothie/ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_cx3kf")
+
+[node name="wall" type="MeshInstance3D" parent="pink_smoothie/ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.783, 30, 0.101135)
+mesh = SubResource("BoxMesh_wfdq0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pink_smoothie/ground/wall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.1, 0, 0)
+mesh = SubResource("QuadMesh_1mar5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pink_smoothie/ground/wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pink_smoothie/ground/wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x3lde")
+
+[node name="wall2" type="MeshInstance3D" parent="pink_smoothie/ground"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 243.217, 30, 0.101135)
+mesh = SubResource("BoxMesh_wfdq0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pink_smoothie/ground/wall2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.1, 0, 0)
+mesh = SubResource("QuadMesh_1mar5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pink_smoothie/ground/wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pink_smoothie/ground/wall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x3lde")
+
+[node name="ground2" type="MeshInstance3D" parent="pink_smoothie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78256, 4.57764e-05, -300.101)
+mesh = SubResource("BoxMesh_xsex8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pink_smoothie/ground2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pink_smoothie/ground2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_cx3kf")
+
+[node name="wall" type="MeshInstance3D" parent="pink_smoothie/ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.783, 30, 0.101135)
+mesh = SubResource("BoxMesh_wfdq0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pink_smoothie/ground2/wall"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.1, 0, 0)
+mesh = SubResource("QuadMesh_1mar5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pink_smoothie/ground2/wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pink_smoothie/ground2/wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x3lde")
+
+[node name="wall2" type="MeshInstance3D" parent="pink_smoothie/ground2"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 243.217, 30, 0.101135)
+mesh = SubResource("BoxMesh_wfdq0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pink_smoothie/ground2/wall2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.1, 0, 0)
+mesh = SubResource("QuadMesh_1mar5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pink_smoothie/ground2/wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pink_smoothie/ground2/wall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x3lde")
+
+[node name="green_smoothie" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 475)
+
+[node name="ground2" type="MeshInstance3D" parent="green_smoothie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 147)
+mesh = SubResource("BoxMesh_2nij5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="green_smoothie/ground2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="green_smoothie/ground2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jaay3")
+
+[node name="pounders2" type="Node3D" parent="green_smoothie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -300)
+
+[node name="pounder" parent="green_smoothie/pounders2" instance=ExtResource("7_nn3ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.582, 30.6058, 618.898)
+
+[node name="Path3D" parent="green_smoothie/pounders2/pounder" index="0"]
+curve = SubResource("Curve3D_u6cav")
+
+[node name="PathFollow3D" parent="green_smoothie/pounders2/pounder/Path3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+ratio = 0.4
+delay_time = 0.5
+
+[node name="pounder2" parent="green_smoothie/pounders2" instance=ExtResource("7_nn3ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.418, 30.6058, 618.898)
+
+[node name="Path3D" parent="green_smoothie/pounders2/pounder2" index="0"]
+curve = SubResource("Curve3D_tccvg")
+
+[node name="PathFollow3D" parent="green_smoothie/pounders2/pounder2/Path3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+ratio = 0.4
+delay_time = 0.5
+
+[node name="pounders3" type="Node3D" parent="green_smoothie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+
+[node name="pounder" parent="green_smoothie/pounders3" instance=ExtResource("7_nn3ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.582, 30.6058, 618.898)
+
+[node name="Path3D" parent="green_smoothie/pounders3/pounder" index="0"]
+curve = SubResource("Curve3D_u6cav")
+
+[node name="PathFollow3D" parent="green_smoothie/pounders3/pounder/Path3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+ratio = 0.4
+delay_time = 1.0
+
+[node name="pounder2" parent="green_smoothie/pounders3" instance=ExtResource("7_nn3ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.418, 30.6058, 618.898)
+
+[node name="Path3D" parent="green_smoothie/pounders3/pounder2" index="0"]
+curve = SubResource("Curve3D_tccvg")
+
+[node name="PathFollow3D" parent="green_smoothie/pounders3/pounder2/Path3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+ratio = 0.4
+delay_time = 1.0
+
+[node name="pounders" type="Node3D" parent="green_smoothie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
+
+[node name="pounder" parent="green_smoothie/pounders" instance=ExtResource("7_nn3ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.582, 30.6058, 618.898)
+
+[node name="Path3D" parent="green_smoothie/pounders/pounder" index="0"]
+curve = SubResource("Curve3D_u6cav")
+
+[node name="PathFollow3D" parent="green_smoothie/pounders/pounder/Path3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+ratio = 0.4
+delay_time = 0.0
+
+[node name="pounder2" parent="green_smoothie/pounders" instance=ExtResource("7_nn3ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.418, 30.6058, 618.898)
+
+[node name="Path3D" parent="green_smoothie/pounders/pounder2" index="0"]
+curve = SubResource("Curve3D_tccvg")
+
+[node name="PathFollow3D" parent="green_smoothie/pounders/pounder2/Path3D" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+ratio = 0.4
+delay_time = 0.0
+
+[node name="green_smoothie2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1075)
+
+[node name="ground2" type="MeshInstance3D" parent="green_smoothie2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 147)
+mesh = SubResource("BoxMesh_2nij5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="green_smoothie2/ground2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="green_smoothie2/ground2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jaay3")
+
+[node name="Node3D" parent="." instance=ExtResource("8_87fpy")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 5, 1100)
+
+[node name="Node3D2" parent="." instance=ExtResource("8_87fpy")]
+transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 0, 5, 1200)
+
+[node name="Node3D3" parent="." instance=ExtResource("8_87fpy")]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 5, 1150)
+
+[node name="CUBE_WALL" parent="." instance=ExtResource("9_35y34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 30, 100)
+
+[node name="CUBE_WALL5" parent="." instance=ExtResource("9_35y34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 100)
+
+[node name="CUBE_WALL6" parent="." instance=ExtResource("9_35y34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 100)
+
+[node name="CUBE_WALL3" parent="." instance=ExtResource("9_35y34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 30, -100)
+
+[node name="CUBE_WALL4" parent="." instance=ExtResource("9_35y34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 30, -100)
+
+[node name="CUBE_WALL2" parent="." instance=ExtResource("9_35y34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 30, 151)
+
+[node name="Broccoli" parent="." instance=ExtResource("10_knmv4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 200, 20, 400)
+
+[node name="Broccoli2" parent="." instance=ExtResource("10_knmv4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 200, 20, 450)
+
+[node name="Broccoli3" parent="." instance=ExtResource("10_knmv4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 200, 20, 500)
+
+[node name="Broccoli4" parent="." instance=ExtResource("10_knmv4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -200, 20, 400)
+
+[node name="Broccoli5" parent="." instance=ExtResource("10_knmv4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -200, 20, 450)
+
+[node name="Broccoli6" parent="." instance=ExtResource("10_knmv4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -200, 20, 500)
+
+[node name="Juicer" parent="." instance=ExtResource("11_b4jys")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -80, 14, 340)
+
+[node name="Juicer2" parent="." instance=ExtResource("11_b4jys")]
+transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 80, 14, 340)
+
+[node name="big_ramp" parent="." instance=ExtResource("6_2je8m")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0.707107, 0.707107, 3.09086e-08, -0.707107, 0.707107, -3.09086e-08, 0, 4, 180)
+
+[editable path="Blender"]
+[editable path="Blender3"]
+[editable path="green_smoothie/pounders2/pounder"]
+[editable path="green_smoothie/pounders2/pounder2"]
+[editable path="green_smoothie/pounders3/pounder"]
+[editable path="green_smoothie/pounders3/pounder2"]
+[editable path="green_smoothie/pounders/pounder"]
+[editable path="green_smoothie/pounders/pounder2"]

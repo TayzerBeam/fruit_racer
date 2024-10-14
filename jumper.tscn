@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnrogbdwyfyg2"]
+
+[ext_resource type="Script" path="res://pounder_path.gd" id="1_2ggdd"]
+[ext_resource type="Script" path="res://pounder_character.gd" id="2_rr500"]
+
+[sub_resource type="Curve3D" id="Curve3D_epjcu"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1m1v"]
+albedo_color = Color(0, 0.376471, 0.0235294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2vn10"]
+material = SubResource("StandardMaterial3D_y1m1v")
+size = Vector3(50, 50, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgkwk"]
+size = Vector3(50, 50, 100)
+
+[node name="jumper" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_epjcu")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_2ggdd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
+mesh = SubResource("BoxMesh_2vn10")
+
+[node name="jumper" type="CharacterBody3D" parent="Path3D/PathFollow3D/MeshInstance3D"]
+motion_mode = 1
+wall_min_slide_angle = 1.5708
+platform_on_leave = 1
+platform_wall_layers = 1
+script = ExtResource("2_rr500")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/MeshInstance3D/jumper"]
+shape = SubResource("BoxShape3D_lgkwk")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.31134e-07, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, 1.31134e-07, -106, -4.63341e-06, 0)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, 1.91069e-15, -4.37114e-08, 0, -1, -4.37114e-08, -127, -5.55135e-06, 0)
+visible = false

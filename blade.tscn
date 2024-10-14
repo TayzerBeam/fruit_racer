@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://w8wds0kb2711"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qb3tv"]
+albedo_color = Color(0.00784314, 1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xu3j5"]
+material = SubResource("StandardMaterial3D_qb3tv")
+size = Vector2(10, 10)
+
+[node name="blade" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_xu3j5")

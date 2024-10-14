@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://j6yy50iuoxyg"]
+
+[ext_resource type="PackedScene" uid="uid://digtawaeq5eyu" path="res://assets/banana_fractured_pieces.glb" id="1_e7vda"]
+
+[node name="banana_fractured" type="Node3D"]
+
+[node name="banana_fractured_pieces" parent="." instance=ExtResource("1_e7vda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
+
+[editable path="banana_fractured_pieces"]
